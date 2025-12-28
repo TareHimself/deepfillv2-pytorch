@@ -92,7 +92,7 @@ class GDeConv(nn.Module):
                           padding=padding)
 
     def forward(self, x):
-        x = F.interpolate(x, scale_factor=2, mode='nearest',
+        x = F.interpolate(x, scale_factor=2., mode='nearest',
                           recompute_scale_factor=False)
         x = self.conv(x)
         return x

@@ -2,6 +2,7 @@
 *.pth
 tmp
 checkpoints/
+torchscript/
 tb_logs/
 node_modules/
 

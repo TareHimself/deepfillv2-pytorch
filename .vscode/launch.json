@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "inputs": [
+        {
+            "id": "caseNumber",
+            "description": "The case number",
+            "type": "promptString",
+            "default": "1"
+        }
+    ],
+    "configurations": [
+        {
+            "name": "Debug pytorch script",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test_pytorch.py",
+            "args": ["--image" ,"examples/inpaint/case${input:caseNumber}.png" ,"--mask" ,"examples/inpaint/case${input:caseNumber}_mask.png" ,"--out" ,"examples/inpaint/case${input:caseNumber}_out_test_torchscript.png" ,"--model" ,"torchscript/deepfillv2_places2_script.pt"],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug pytorch new",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test_pytorch.py",
+            "args": ["--image" ,"examples/inpaint/case${input:caseNumber}.png" ,"--mask" ,"examples/inpaint/case${input:caseNumber}_mask.png" ,"--out" ,"examples/inpaint/case${input:caseNumber}_out_test_pytorch_new.png" ,"--checkpoint" ,"pretrained/states_pt_places2.pth"],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug pytorch original",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test.py",
+            "args": ["--image" ,"examples/inpaint/case${input:caseNumber}.png" ,"--mask" ,"examples/inpaint/case${input:caseNumber}_mask.png" ,"--out" ,"examples/inpaint/case${input:caseNumber}_out_test.png" ,"--checkpoint" ,"pretrained/states_pt_places2.pth"],
+            "console": "integratedTerminal"
+        }
+    ]
+}
