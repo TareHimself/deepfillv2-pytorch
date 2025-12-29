@@ -21,7 +21,7 @@ class DeepFillV2InPaint(nn.Module):
         images = images * 2 - 1.
         masks = (masks > 0.5).to(dtype=torch.float32)
         images_masked = images * (1.-masks)
-        ones_x = torch.ones((batch_count,1,h,w),dtype=images.dtype,device=images.device)
+        ones_x = torch.ones_like(masks)
         x = torch.cat([images_masked,ones_x,ones_x*masks],dim=1)
         _, x_stage2 = self.generator(x, masks)
         inpainted = images * (1.-masks) + x_stage2 * masks
